@@ -1,0 +1,68 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Editar Incidencia Hijo{% endblock %}
+{% block css_extra %}
+<link href="{% static 'core/assets/css/custom_ckeditor.css' %}" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+{% endblock %}
+{% block content %}
+
+
+<main role="main">
+  <div class="container">
+    <div class="row mt-3 mb-5">
+      <div class="col-md-9 mx-auto">
+         <form method="POST" >{% csrf_token %}
+          <div class="form-row mt-2">
+            <div class="col-md-4 mb-4">
+                <label for="id_folio">Ticket</label>
+                {{form.folio}}
+
+            </div>
+           <div class="col-md-2 mb-2">
+                <label for="id_estado">Estado</label>
+                 {{form.estado}}
+            </div>
+             <div class="col-md-2 mb-2">
+                 <label for="id_msr">MSR</label>
+                     {{form.msr}}
+
+                </div>
+              <div class="col-md-2 mb-2">
+                    <label for="id_nemonico">Nemónico</label>
+                     {{form.nemonico}}
+                </div>
+
+               <div class="col-md-2 mb-2">
+                    <label for="id_padre">Padre</label>
+                     <select name="padre" class="form-control"  id="id_padre">
+                          <option value="{{object.padre.id}}">{{object.padre}}</option>
+                        </select>
+
+                </div>
+          </div>
+            <!--Cierre del row -->
+             <div class="form-row mt-2">
+                <label for="id_description">Descripción</label>
+                {{form.description}}
+                 </div>
+
+
+
+
+              <button class="btn btn-primary  form-control mt-2" type="submit">Editar Incidencia Hijo</button>
+            </form>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block js_extra %}
+<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+
+
+{% endblock %}

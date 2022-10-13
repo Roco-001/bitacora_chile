@@ -1,0 +1,19 @@
+body{
+    background:#E5EFEF;
+
+}
+
+.mapadiv{
+    width: 40%;
+}
+
+.mapadiv path{
+    fill: #0EB194;
+    stroke: #8B4513;
+    stroke-width:2px;
+}
+
+.mapadiv  :hover{
+    fill:#094780;
+
+}

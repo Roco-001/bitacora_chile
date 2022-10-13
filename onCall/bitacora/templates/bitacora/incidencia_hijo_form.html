@@ -1,0 +1,118 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Crear Incidencia{% endblock %}
+{% block css_extra %}
+<link href="{% static 'core/assets/css/custom_ckeditor.css' %}" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+{% endblock %}
+{% block content %}
+
+
+<main role="main">
+    <div class="container">
+     <div class="row mt-3 mb-5">
+            <div class="col">
+                  <h4 class="text-center font-weight-bold mb-3">  Crear Hijos para el Folio Padre {{object.folio}}</h4>
+                   <table class="table">
+                       <thead>
+                    <tr class="text-center my-auto">
+                        <th scope="col">Folio</th>
+                        <th scope="col">Estado </th>
+                         <th scope="col">MSR</th>
+                        <th scope="col">NOT</th>
+
+
+                        <th scope="col" colspan="2">Descripción</th>
+                        <th scope="col">Nemónico </th>
+                        <th scope="col">Región</th>
+
+                   </tr>
+                    </thead>
+                      <tbody>
+                        <tr class="text-center my-auto">
+                        <td scope="col">{{object.folio}}</td>
+                        <td scope="col">{{object.estado}} </td>
+                        <td scope="col">{{object.msr}}</td>
+                        <td scope="col">{{object.noti}}</td>
+                        <td scope="col" colspan="2">{{object.description|safe}}</td>
+                        <td scope="col">{{object.nemonico}}</td>
+                        <td scope="col">{{object.region}}</td>
+                    </tr>
+                        <tr style="background-color:white;">
+                            <td colspan="8">
+                            </td>
+
+                        </tr>
+                        {% for hijo in object.get_incidencia_padres.all %}
+                       <tr class="text-center my-auto" style="background-color:#0B92F5;">
+                        <td scope="col">{{hijo.folio}}</td>
+                        <td scope="col">{{hijo.estado}} </td>
+                        <td scope="col">{{hijo.msr}}</td>
+
+                        <td scope="col" colspan="2">{{hijo.description|safe}}</td>
+                        <td scope="col">{{hijo.nemonico}}</td>
+                        <td scope="col">{{hijo.region}}</td>
+                           <td class="border px-2 py-2 text-center" >
+                                  <a class="btn btn-info btn-sm my-1" style="width:auto; " href="{% url 'bitacora:incidenciaHijo_update' hijo.id   %}">
+                                      <i class="fas fa-pencil-alt">
+                                      </i><font _mstmutation="1" _msthash="3299387" _msttexthash="75699"> Editar </font></a>
+
+                               <a class="btn btn-primary btn-sm my-1" style="width:auto;" href="{% url 'bitacora:incidenciaHijo_delete' hijo.id   %}">
+                                      <i class="fas fa-trash-alt"></i>
+                                        <font _mstmutation="1" _msthash="3299270" _msttexthash="61152"> Borrar   </font></a>
+                            </td>
+                    </tr>
+                      {% endfor %}
+                    </tbody>
+                </table>
+             <button type="button" class="btn btn-primary form-control" data-toggle="modal" data-target="#exampleModal">
+                  <i class="bi bi-plus"></i>
+                 Agregar Hijo
+                </button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Agregue un Elemento</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+           <div class="container-fluid">
+            <div class="row">
+                 <div class="col-12">
+                     <form method="POST" >{% csrf_token %}
+                    <table>
+                        {{form.as_table}}
+                    </table>
+                     </div>
+                </div>
+               </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button  class="btn btn-primary" type="submit">Agregar Hijo</button>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
+
+{% block js_extra %}
+<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+
+{% endblock %}

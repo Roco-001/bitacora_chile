@@ -1,0 +1,229 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Crear Incidencia{% endblock %}
+{% block css_extra %}
+<link href="{% static 'core/assets/css/custom_ckeditor.css' %}" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.bootstrap4.min.css" rel="stylesheet" />
+
+<style>.errorlist{color:red; list-style:none;}</style>
+{% endblock %}
+{% block content %}
+<h5 class="text-center errorlist mt-3 font-weight-bolder" >
+  {{form.folio.errors}}
+ </h5>
+
+{%  if   form.inicio_afectacion.errors %}
+<h5 class="text-center errorlist mt-3 font-weight-bolder" >
+  La fecha de Inicio de Afectacion es obliglatorio
+ </h5>
+{% endif %}
+
+{% if not form.inicio_afectacion.errors    %}
+{% if not form.folio.errors  %}
+    {%  if 'ok' in request.GET  %}
+        <h5 class="text-center  mt-3 font-weight-bolder"  style="color:green;">
+          Incidencia correctamente cargada en la bitácora...
+         </h5>
+    {% endif %}
+{% endif %}
+{% endif %}
+
+{% if not form.inicio_afectacion.errors  %}
+{% if not form.folio.errors  %}
+    {%  if 'okE' in request.GET  %}
+        <h5 class="text-center  mt-3 font-weight-bolder"  style="color:green;">
+          Elemento Cargado correctamente en la BD...
+         </h5>
+    {% endif %}
+{% endif %}
+{% endif %}
+
+<main role="main">
+  <div class="container">
+    <div class="row mt-3 mb-5">
+      <div class="col-md-9 mx-auto">
+         <form method="POST" >{% csrf_token %}
+          <div class="form-row mt-2">
+            <div class="col-md-2 mb-2">
+                <label for="{{form.folio.name}}">{{form.folio.label}}</label>
+                {{form.folio}}
+            </div>
+
+
+           <div class="col-md-2 mb-2">
+                <label for="{{form.estado.name}}">{{form.estado.label}}</label>
+                 {{form.estado}}
+            </div>
+
+             <div class="col-md-2 mb-2">
+                 <label for="{{form.msr.name}}">{{form.msr.label}}</label>
+                     {{form.msr}}
+
+                </div>
+             <div class="col-md-2 mb-2">
+                 <label for="{{form.noti.name}}">{{form.noti.label}}</label>
+                     {{form.noti}}
+                </div>
+               <div class="col-md-2 mb-2">
+                    <label for="{{form.region.name}}">{{form.region.label}}</label>
+                     {{form.region}}
+                </div>
+              <div class="col-md-2 mb-2">
+                    <label for="{{form.nemonico.name}}">{{form.nemonico.label}}</label>
+                     {{form.nemonico}}
+                </div>
+          </div>
+            <!--Cierre del row -->
+             <div class="form-row mt-2">
+                <label for="{{form.description.name}}">{{form.description.label}}</label>
+                {{form.description}}
+                 </div>
+
+                      <div class="form-row mt-2">
+                           <div class="col-md-6 mb-6">
+                             <label for="{{form.inicio_afectacion.name}}">{{form.inicio_afectacion.label}}</label>
+                             {{form.inicio_afectacion}}
+                            </div>
+                             <div class="col-md-6 mb-6">
+                             <label for="{{form.calendarizacion.name}}">{{form.calendarizacion.label}}</label>
+                                 {{form.calendarizacion}}
+
+                             </div>
+
+
+                      </div>
+              <!--Cierre del row -->
+
+             <div class="form-row mt-2">
+                           <div class="col-md-6 mb-6">
+                             <label for="{{form.ultima_actualizacion.name}}">{{form.ultima_actualizacion.label}}</label>
+                             {{form.ultima_actualizacion}}
+
+                            </div>
+                             <div class="col-md-6 mb-6">
+                                  <label for="{{form.proxima_actualizacion.name}}">{{form.proxima_actualizacion.label}}</label>
+
+                         {{form.proxima_actualizacion}}
+
+                        </div>
+                      </div>
+              <!--Cierre del row -->
+              <div class="form-row mt-2">
+                           <div class="col-md-6 mb-6">
+                             <label for="{{form.elemento.name}}">{{form.elemento.label}}</label>
+                             {{form.elemento}}
+
+                            </div>
+
+                                <div class="col-md-6 mb-6 mt-auto">
+                                  <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                        <i class="bi bi-plus"></i>
+                                      Agregar Elemento
+                                    </button>
+                                </div>
+                          </div>
+              <!--Cierre del row -->
+      <button class="btn btn-primary  form-control mt-2" type="submit">Agregar</button>
+    </form>
+      </div>
+    </div>
+  </div>
+</main>
+
+ <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Agregue un Elemento</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+           <div class="container-fluid">
+            <div class="row">
+                 <div class="col-12">
+                     <form method="GET" >{% csrf_token %}
+                    <table>
+                        {{form2.as_table}}
+                    </table>
+                     </div>
+                </div>
+               </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button  class="btn btn-primary" name="elemento" type="submit">Crear Elemento</button>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+
+{% block js_extra %}
+<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+
+<script type="text/javascript">
+    // This code activates flatpickr on fields with the 'datetimefield' class when the document has loaded
+    window.addEventListener("DOMContentLoaded", function () {
+        flatpickr("#id_inicio_afectacion", {
+            enableTime: true,
+            enableSeconds: true,
+            dateFormat: "Y-m-d H:i:S",
+        });
+    });
+</script>
+<script type="text/javascript">
+    // This code activates flatpickr on fields with the 'datetimefield' class when the document has loaded
+    window.addEventListener("DOMContentLoaded", function () {
+        flatpickr("#id_ultima_actualizacion", {
+            enableTime: true,
+            enableSeconds: true,
+            dateFormat: "Y-m-d H:i:S",
+        });
+    });
+</script>
+<script type="text/javascript">
+    // This code activates flatpickr on fields with the 'datetimefield' class when the document has loaded
+    window.addEventListener("DOMContentLoaded", function () {
+        flatpickr("#id_proxima_actualizacion", {
+            enableTime: true,
+            enableSeconds: true,
+            dateFormat: "Y-m-d H:i:S",
+        });
+    });
+</script>
+<script type="text/javascript">
+    // This code activates flatpickr on fields with the 'datetimefield' class when the document has loaded
+    window.addEventListener("DOMContentLoaded", function () {
+        flatpickr("#id_calendarizacion", {
+            enableTime: true,
+            enableSeconds: true,
+            dateFormat: "Y-m-d H:i:S",
+        });
+    });
+</script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+     $('#id_elemento').select2({
+        placeholder: "Seleccione un Elemento",
+        allowClear:true,
+        language: 'es'
+
+     });
+
+ });
+</script>
+
+{% endblock %}

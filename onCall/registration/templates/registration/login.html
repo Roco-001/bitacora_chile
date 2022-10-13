@@ -1,0 +1,41 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Login {% endblock %}
+{% block login %}
+{% load static %}
+
+<body class="h-screen font-sans login bg-cover">
+<div class="container mx-auto h-full flex flex-1 justify-center items-center">
+  <div class="w-full max-w-lg">
+    <div class="leading-loose">
+      <main class="form-signin">
+      <form class="max-w-xl m-4 p-10 bg-white rounded shadow-xl" action="" method="POST"> {% csrf_token %}
+    <h1 class="h3 mb-3 fw-normal">Por favor Identifiquese</h1>
+
+    <div class="form-floating">
+      <input type="name" class="form-control" id="floatingInput" placeholder="Introduce tu Usuario" id="username" name="username">
+      <label for="floatingInput">Usuario</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" id="password" name="password">
+      <label for="floatingPassword">Password</label>
+    </div>
+
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> Recuerdame
+      </label>
+    </div>
+          {% if form.non_field_errors %}
+            <p style="color:red">Usuario o contraseña incorrectos, prueba de nuevo.</p>
+          {% endif %}
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Inicie Sesión</button>
+    </form>
+</main>
+
+    </div>
+  </div>
+</div>
+</body>
+{% endblock %}
+

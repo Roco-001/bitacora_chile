@@ -1,0 +1,64 @@
+{% extends 'core/base.html' %}
+{% block title %}Incidecia Hijo Detail{% endblock %}
+{% load static %}
+ {% block css_extra %}
+    <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="{% static 'core/plugins/fontawesome-free/css/all.min.css' %}">
+{% endblock %}
+
+{% block content %}
+ <div class="container mt-3">
+    <div class="row">
+        <div class="col-12 ">
+          <a href="javascript:history.back()" class="text-muted">
+                       <i class="bi bi-backspace-fill"></i> Regresar
+               </a>
+           <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col" colspan="15" class="text-center">Incidencias Hijo {{object}} </th>
+              </tr>
+                 <tr class="text-center">
+                    <td>Folio</td>
+                     <td>Estado</td>
+                     <td>MSR</td>
+
+                    <td colspan="2">Descripción</td>
+                     <td>Nemónico</td>
+                     <td></td>
+              </tr>
+            </thead>
+            <tbody>
+
+            <tr class="text-center">
+
+                   <td> {{object.folio}}</td>
+                   <td> {{object.estado}}</td>
+                   <td> {{object.msr}}</td>
+
+
+                <td colspan="2"> {{object.description|safe}}</td>
+                   <td> {{object.nemonico}}</td>
+
+
+                  <td class="border px-2 py-2 text-center" >
+
+                          <a class="btn btn-info btn-sm my-1" style="width:auto; " href="{% url 'bitacora:incidenciaHijo_update' object.id  %}">
+                              <i class="fas fa-pencil-alt">
+                              </i><font _mstmutation="1" _msthash="3299387" _msttexthash="75699"> Editar </font></a>
+
+                       <a class="btn btn-primary btn-sm my-1" style="width:auto;" href="{% url 'bitacora:incidenciaHijo_delete' object.id  %}">
+                              <i class="fas fa-trash-alt"></i>
+                                <font _mstmutation="1" _msthash="3299270" _msttexthash="61152"> Borrar  </font></a>
+
+                       </td>
+
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+    </div>
+ </div>
+{% endblock %}
+

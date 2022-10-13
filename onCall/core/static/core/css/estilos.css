@@ -1,0 +1,100 @@
+@charset "UTF-8";
+/*----------------------------------------
+SOBREESCRIBIENDO  LOS ESTILOS DE BOOTSTRAP
+------------------------------------------*/
+.bg-primary {
+  background-color: #232d4b; !important; }
+
+.text-primary {
+  color: #ff401c !important; }
+
+.btn-primary {
+  background-color: #232d4b; !important;
+  border-color: #00aa9b !important; }
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #00aa9b !important; }
+
+.btn-primary:active {
+  background-color: #232d4b; !important;
+  border-color: #00aa9b !important; }
+
+.btn-primary:focus {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(255, 64, 28, 0.5) !important;
+          box-shadow: 0 0 0 0.2rem rgba(255, 64, 28, 0.5) !important; }
+
+.container a {
+  color: white;
+  text-decoration: none;
+}
+
+.btn-outline-primary:hover {
+  background-color: #005573 !important;
+}
+
+.btn-outline-primary{
+    color:white;
+}
+
+.table, .card-header  {
+  background-color: #1F618D; !important;
+  color:white;
+
+}
+
+.card-header-tabs :hover{
+    color:white;
+}
+.table-head {
+    font-size:20px;
+}
+tr td {
+   font-size:14px;
+
+}
+
+
+
+.page-item.active .page-link {
+    background-color: #232d4b;  !important;
+}
+
+a.link-primary {
+    color:black; !important;
+}
+
+
+.subespecialidades {
+    background-color: #3498DB; !important;
+
+}
+
+.guardias {
+    background-color: #5499C7; !important;
+
+}
+
+/*--------------------------
+ESTILOS DEL DISEÑO
+---------------------------*/
+html {
+  font-size: 13px; }
+
+body {
+  background:#E5EFEF;
+  color: #44484a;
+  font-family: 'Open Sans', sans-serif; }
+
+.card:hover {
+  -webkit-box-shadow: 0 0 10px #0c0c0c3b;
+          box-shadow: 0 0 10px #0c0c0c3b; }
+
+/*------------------------
+SHOW DE LOS MEDIAS QUERIES
+------------------------*/
+@media (min-width: 768px) {
+  html {
+    font-size: 16px; } }
+
+/*# sourceMappingURL=estilos.css.map */

@@ -1,0 +1,24 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Borrar Incidencia | {{object.id}} {% endblock %}
+
+{% block content %}
+    <!--Main-->
+<main class="bg-white-500 flex-1 p-3 overflow-hidden">
+
+ <div class="container">
+    <div class="row mt-3">
+      <div class="col-md-9 mx-auto">
+        <div>
+            <form action="" method="post">{% csrf_token %}
+                <p>¿Seguro que quieres borrar esta Incidencia "{{ object.name }}"?</p>
+                <input type="submit" value="Sí, borrar la incidencia de la  bitacora" />
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+ {% endblock %}
